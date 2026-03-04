@@ -33,7 +33,7 @@ while True:
       setRGB(255,0,0)
       ledS = ledS ^ 1
 
-    digitalWrite(led, ledS)
+    grovepi.digitalWrite(led, ledS)
     time.sleep(0.5)
 
 
