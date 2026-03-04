@@ -23,11 +23,11 @@ while True:
     # TODO: format LCD text according to threshhold
     if pot > dis:
       setText(str(pot) + "cm\n" + str(dis))
-      setRBG(0,255,0)
+      setRGB(0,255,0)
     else:
       setText(str(pot) + "cm OBJ PRES\n" + str(dis))
-      setRBG(255,0,0)
-      
+      setRGB(255,0,0)
+
     time.sleep(0.2)
 
 
