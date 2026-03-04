@@ -25,11 +25,11 @@ while True:
     pot = grovepi.analogRead(potentiometer)/2 # orignial range 0 - 1023, divide by 2 to map 
     # TODO: format LCD text according to threshhold
     if pot < dis:
-      setText(str(pot) + "cm\n" + str(dis))
+      setText_norefresh(str(pot) + "cm\n" + str(dis))
       setRGB(0,255,0)
       ledS = 0
     else:
-      setText(str(pot) + "cm OBJ PRES\n" + str(dis))
+      setText_norefresh(str(pot) + "cm OBJ PRES\n" + str(dis))
       setRGB(255,0,0)
       ledS = ledS ^ 1
 
