@@ -22,7 +22,7 @@ top_line = ""
 while True:
   try:
     dis = grovepi.ultrasonicRead(ultrasonic_ranger) # orignial ragne: 0 - 500
-    pot = grovepi.analogRead(potentiometer)/2 # orignial range 0 - 1023, divide by 2 to map 
+    pot = grovepi.analogRead(potentiometer) # orignial range 0 - 1023, divide by 2 to map 
     if pot < dis:
       top_line = (str(pot) + "cm").ljust(16)
       setRGB(0,255,0)
