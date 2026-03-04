@@ -21,8 +21,15 @@ while True:
     # TODO: read threshold from potentiometer
     pot = grovepi.analogRead(potentiometer)
     # TODO: format LCD text according to threshhold
-    setText(str(pot) + "cm\n" + str(dis))
+    if pot > dis:
+      setText(str(pot) + "cm\n" + str(dis))
+      setRBG(0,255,0)
+    else:
+      setText(str(pot) + "cm OBJ PRES\n" + str(dis))
+      setRBG(255,0,0)
+      
     time.sleep(0.2)
+
 
   
   except IOError:
