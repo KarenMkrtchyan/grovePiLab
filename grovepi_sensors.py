@@ -8,6 +8,9 @@ from grove_rgb_lcd import *
 ultrasonic_ranger = 2
 # potentiometer connected to analog port A0 as input
 potentiometer = 1
+led = 4
+ledS = 0
+grovepi.pinMode(led, "OUTPUT")
 grovepi.pinMode(potentiometer,"INPUT")
 time.sleep(1)
 
@@ -24,11 +27,14 @@ while True:
     if pot < dis:
       setText(str(pot) + "cm\n" + str(dis))
       setRGB(0,255,0)
+      ledS = 0
     else:
       setText(str(pot) + "cm OBJ PRES\n" + str(dis))
       setRGB(255,0,0)
+      ledS = ledS ^ 1
 
-    time.sleep(0.2)
+    digitalWrite(led, ledS)
+    time.sleep(0.5)
 
 
   
