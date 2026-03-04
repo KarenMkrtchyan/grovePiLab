@@ -17,37 +17,23 @@ time.sleep(1)
 
 # clear lcd screen  before starting main loop
 setText("")
+top_line = ""
 
 while True:
   try:
-    # TODO:read distance value from Ultrasonic Ranger and print distance on LCD
     dis = grovepi.ultrasonicRead(ultrasonic_ranger) # orignial ragne: 0 - 500
-    # TODO: read threshold from potentiometer
     pot = grovepi.analogRead(potentiometer)/2 # orignial range 0 - 1023, divide by 2 to map 
-    # TODO: format LCD text according to threshhold
     if pot < dis:
-      if(need_ref == 0):
-        setText("")
-        need_ref = 1
-
-
-      setText_norefresh(str(pot) + "cm\n" + str(dis))
+      top_line = (str(pot) + "cm").ljust(16)
       setRGB(0,255,0)
-      ledS = 0
-
     else:
-      if(need_ref == 1):
-        setText("")
-        need_ref = 0
-
-      setText_norefresh(str(pot) + "cm OBJ PRES\n" + str(dis))
+      top_line = (str(pot) + "cm OBJ PRES").ljust(16)
       setRGB(255,0,0)
-      ledS = ledS ^ 1
 
-    grovepi.digitalWrite(led, ledS)
+    bottom_line = (str(dis) + "cm").ljust(16)
+    setText_norefresh(top_line + "\n" + bottom_line)
+    # grovepi.digitalWrite(led, ledS)
     # time.sleep(0.5)
 
-
-  
   except IOError:
     print("Error")
