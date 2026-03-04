@@ -10,6 +10,7 @@ ultrasonic_ranger = 2
 potentiometer = 1
 led = 4
 ledS = 0
+need_ref = 1
 grovepi.pinMode(led, "OUTPUT")
 grovepi.pinMode(potentiometer,"INPUT")
 time.sleep(1)
@@ -25,10 +26,20 @@ while True:
     pot = grovepi.analogRead(potentiometer)/2 # orignial range 0 - 1023, divide by 2 to map 
     # TODO: format LCD text according to threshhold
     if pot < dis:
+      if(need_ref == 0):
+        setText("")
+        need_ref = 1
+
+
       setText_norefresh(str(pot) + "cm\n" + str(dis))
       setRGB(0,255,0)
       ledS = 0
+
     else:
+      if(need_ref == 1):
+        setText("")
+        need_ref = 0
+
       setText_norefresh(str(pot) + "cm OBJ PRES\n" + str(dis))
       setRGB(255,0,0)
       ledS = ledS ^ 1
