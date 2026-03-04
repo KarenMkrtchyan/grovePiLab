@@ -34,7 +34,7 @@ while True:
       ledS = ledS ^ 1
 
     grovepi.digitalWrite(led, ledS)
-    time.sleep(0.5)
+    # time.sleep(0.5)
 
 
   
