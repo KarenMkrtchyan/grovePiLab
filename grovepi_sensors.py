@@ -9,9 +9,7 @@ ultrasonic_ranger = 2
 # potentiometer connected to analog port A0 as input
 potentiometer = 1
 grovepi.pinMode(potentiometer,"INPUT")
-
-def setText(word):
-  pass
+time.sleep(1)
 
 # clear lcd screen  before starting main loop
 setText("")
@@ -22,10 +20,10 @@ while True:
     dis = grovepi.ultrasonicRead(ultrasonic_ranger)
 
     # TODO: read threshold from potentiometer
-
+    pot = grovepi.analogRead(potentiometer)
     
     # TODO: format LCD text according to threshhold
+    setText(f"{pot}cm\n{dis}")
   
-    
   except IOError:
     print("Error")
