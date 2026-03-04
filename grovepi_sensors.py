@@ -18,12 +18,12 @@ while True:
   try:
     # TODO:read distance value from Ultrasonic Ranger and print distance on LCD
     dis = grovepi.ultrasonicRead(ultrasonic_ranger)
-
     # TODO: read threshold from potentiometer
     pot = grovepi.analogRead(potentiometer)
-    
     # TODO: format LCD text according to threshhold
-    setText(f"{pot}cm\n{dis}")
+    setText(str(pot) + "cm\n" + str(dis))
+    time.sleep(0.2)
+
   
   except IOError:
     print("Error")
